@@ -10,5 +10,4 @@ export const fetchData = async () => {
 
     return { confirmed, recovered, deaths, lastUpdate };
   } catch (error) {}
-};
-//setup api
+}
