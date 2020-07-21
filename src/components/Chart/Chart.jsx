@@ -9,16 +9,31 @@ const Chart = () => {
     const fetchAPI = async () => {
       setDailyData(await fetchDailyData());
     };
-    console.log(dailyData);
 
     fetchAPI();
-  }, []);
+  });
 
   const lineChart = dailyData[0] ? (
     <Line
       data={{
-        labels: "",
-        datasets: [{}, {}],
+        labels: dailyData(({ date }) => date),
+
+        datasets: [
+          {
+            data: dailyData(({ confirmed }) => confirmed),
+            label: "Infected",
+            borderColor: "#3333ff",
+            fill: true,
+          },
+          {
+            data: dailyData(({ deaths }) => deaths),
+            label: "Infected",
+            borderColor: "red",
+            backgroundColor: "rgba(255, 0, 0, 0.5)",
+
+            fill: true,
+          },
+        ],
       }}
     />
   ) : null;
